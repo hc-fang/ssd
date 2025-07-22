@@ -1,0 +1,60 @@
+defaults:
+  - fed@_global_: hete
+
+seed: 17
+root: /work/u3254122/FedRepr/FedMy # /work/u3254122, /tmp2/hcfang
+
+# experiment setup
+method: FedAlignUniformSubspace
+target: mains.train_fedalignuniform.FedAlignUniform
+params:
+  # dataset 
+  dataset: cifar10
+  split_file: '${root}/data/fed/${params.dataset}_dir_client${params.n_clients}_alpha${dir_alpha}.json'
+  torchvision_root: ${root}/data
+
+  # device
+  device: cuda:0
+
+  # steps
+  global_rounds: 100
+  local_epochs: 5
+
+  # training 
+  base_lr: 0.2
+  batch_size: 128
+  weight_decay: 1e-4
+  momentum: 0.9
+  temperature: 0.07
+
+  # fed
+  join_ratio: 1.0
+  n_clients: 10
+
+  # loss coeff
+  uniform_coeff: 1.0
+  subspace_coeff: 1.0
+  distill_coeff: 0.5
+
+  # distill
+  distill_method: 'KL' # KL, MSE
+
+  # subspace hyperparameters
+  subspace_weight_dim: 51 # how many dimensions to be weighted
+  subspace_weight_range: [10, 10] # the range of weights [low, high]
+  subspace_norm: True # whether to noramlized on the unit sphere with DSR loss
+  subspace_detach: True  # whether to detach the projeted term
+  subspace_mode: fixed 
+
+  # task setup
+  task_name: ${method}-uni${params.uniform_coeff}-ss${params.subspace_coeff}-dist${params.distill_coeff}_${params.distill_method}-weighted${params.subspace_weight_dim}-mode${params.subspace_mode}-range${params.subspace_weight_range[0]}_${params.subspace_weight_range[1]}-norm${params.subspace_norm}-detach${params.subspace_detach}-${params.dataset}-al${dir_alpha}-num${params.n_clients}-jr${params.join_ratio}-rd${params.global_rounds}-ep${params.local_epochs}-bsz${params.batch_size}-seed${seed}-${now:%m.%d-%H.%M}
+
+wandb:
+  project: FedSubspace
+  entity: hcfang
+  mode: online # disabled
+  name: ${params.task_name}
+
+hydra: 
+  run:
+    dir: ./outputs/${params.task_name}
