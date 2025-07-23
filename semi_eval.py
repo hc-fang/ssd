@@ -31,10 +31,11 @@ def main():
 
     # setup wandb
     wandb.init(
-        project='FedSubspace_Semi',
+        project='SSD',
         entity='hcfang',
-        name=f'{args.name}_ratio{args.labeled_ratio}_p' if args.projector else f'{args.name}_ratio{args.labeled_ratio}',
-        mode='online'
+        name=args.name,
+        mode='online',
+        tags=[f'semi_eval_ratio{args.labeled_ratio}']
     )
 
     if "2d" not in args.name:
@@ -76,10 +77,6 @@ def main():
         torchvision.transforms.RandomResizedCrop(size=32, scale=(0.64, 1.0), ratio=(1.0, 1.0), antialias=True),
         torchvision.transforms.RandomHorizontalFlip(),
     ])
-    
-    # if f'{args.dataset_name}-' not in args.name and f'{args.dataset_name}_' not in args.name:
-    #     print("Load wrong dataset")
-    #     exit()
 
     if args.dataset_name == 'cifar10':
         train_set = CIFAR10(args.torchvision_root, transform=transform)

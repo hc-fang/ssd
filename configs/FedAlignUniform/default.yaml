@@ -2,7 +2,7 @@ defaults:
   - fed@_global_: hete
 
 seed: 17
-root: /work/u3254122/FedRepr/FedMy # /work/u3254122, /tmp2/hcfang
+root: /work/u3254122/ssd 
 
 # experiment setup
 method: FedAlignUniform
@@ -48,7 +48,7 @@ params:
   task_name: ${method}-uni${params.uniform_coeff}-dist${params.distill_coeff}-${params.dataset}-al${dir_alpha}-num${params.n_clients}-jr${params.join_ratio}-rd${params.global_rounds}-ep${params.local_epochs}-bsz${params.batch_size}-seed${seed}-${now:%m.%d-%H.%M}
 
 wandb:
-  project: FedSubspace
+  project: SSD
   entity: hcfang
   mode: online # disabled
   name: ${params.task_name}

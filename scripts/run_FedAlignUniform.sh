@@ -1,12 +1,11 @@
 export CONFIG_PATH="configs/FedAlignUniform"
-export CUDA_VISIBLE_DEVICES=$1
-fed=hete
-dataset=cifar10
-n_clients=10
-join_ratio=1.0
+fed=hete # hete, homo
+dataset=$1 # cifar10, cifar100, tinyimagenet200
+n_clients=$2
+join_ratio=$3
 
 python main.py \
-    seed=$2 \
+    seed=17 \
     fed=$fed \
     params.dataset=$dataset \
     params.n_clients=$n_clients \

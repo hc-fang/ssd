@@ -29,10 +29,11 @@ def main():
 
     # setup wandb
     wandb.init(
-        project='FedSubspace_LinearEval',
+        project='SSD',
         entity='hcfang',
-        name=f'{args.name}_p' if args.projector else args.name,
-        mode='online'
+        name=args.name,
+        mode='online',
+        tags=['linear_eval']
     )
 
     if "2d" not in args.name:
@@ -68,10 +69,6 @@ def main():
         projector.load_state_dict(checkpoint['projector'])
         projector.to(args.device)
         projector.eval()
-    
-    # if f'{args.dataset_name}-' not in args.name and f'{args.dataset_name}_' not in args.name:
-    #     print("Load wrong dataset")
-    #     exit()
 
     if args.dataset_name == 'cifar10':
         train_set = CIFAR10(args.torchvision_root, transform=torchvision.transforms.ToTensor())

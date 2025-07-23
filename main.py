@@ -17,7 +17,8 @@ def main(args):
         project=args.wandb.project,
         entity=args.wandb.entity,
         name=args.wandb.name,
-        mode=args.wandb.mode
+        mode=args.wandb.mode,
+        tags=['train']
     )
 
     runner = instantiate_from_config(args)

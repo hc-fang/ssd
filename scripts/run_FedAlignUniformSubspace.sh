@@ -1,16 +1,20 @@
 export CONFIG_PATH="configs/FedAlignUniformSubspace"
-export CUDA_VISIBLE_DEVICES=$1
-subspace_coeff=1.0
-distill_coeff=0.1
-subspace_weight_dim=51
+
+# setup 
 fed=hete
-n_clients=10
-dataset=cifar10 # cifar100
-join_ratio=1.0
+dataset=$1 # cifar10, cifar100
+n_clients=$2
+join_ratio=$3
+
+# training 
+subspace_coeff=1.0 
+distill_coeff=0.1
+subspace_weight_dim=10 # subspace dimension per client (n_dimensions // n_clients); With n_dimensions=512: 10 for n_clients=50, 51 for n_clients=10
 distill_method='KL'
 
+
 python main.py \
-    seed=$2 \
+    seed=17 \
     params.subspace_coeff=$subspace_coeff \
     params.distill_coeff=$distill_coeff \
     params.subspace_weight_dim=$subspace_weight_dim \
