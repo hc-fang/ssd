@@ -1,4 +1,6 @@
-data/
+# data/
+cifar-10*
+cifar-100*
 wandb/
 __pycache__/
 outputs/
