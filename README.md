@@ -72,7 +72,7 @@ pip install -r requirements.txt
 @inproceedings{ssd_fang2025,
     title={Soft Separation and Distillation: Toward Global Uniformity in Federated Unsupervised Learning},
     author={Hung-Chieh Fang and Hsuan-Tien Lin and Irwin King and Yifei Zhang},
-    booktitle={Proceedings of the International Conference on Computer Vision (ICCV)},
+    booktitle={Proceedings of the IEEE/CVF International Conference on Computer Vision (ICCV)},
     year={2025},
 }
 ```
