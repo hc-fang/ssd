@@ -6,7 +6,7 @@
 This is the official codebase for *Soft Separation and Distillation: Toward Global Uniformity in Federated Unsupervised Learning* (ICCV'25) by Hung-Chieh Fang, Hsuan-Tien Lin, Irwin King and Yifei Zhang.
 
 
-[[paper]()] [[website](https://ssd-uniformity.github.io/)] 
+[[paper](https://arxiv.org/abs/2508.01251)] [[website](https://ssd-uniformity.github.io/)] 
 
 ## Installation
 
